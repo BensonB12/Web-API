@@ -27,6 +27,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapGet("/add", (int num1, int num2) => num1 + num2);
+app.MapGet("/greet", (string name) => $"Greetings {name}! Have you heard of the hapalopilus-nidulans partier? He was a fun guy.");
 app.MapGet("/error", () => Results.Problem());
 app.MapGet("/error/test", () => { throw new Exception("test");  });
 app.MapControllers();
