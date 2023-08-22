@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,12 +16,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+if (app.Configuration.GetValue<bool>("UseDeveloperExceptionPage"))
     app.UseDeveloperExceptionPage();
-}
 else
-{
     app.UseExceptionHandler("/error");
-}
 
 app.UseHttpsRedirection();
 
