@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web_API.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]")] //This is saying, hey, the url is meant to do the controller name: BoardGamesController but without 'controller'. So BoardGames
     [ApiController]
     public class BoardGamesController : ControllerBase
     {
@@ -14,8 +14,8 @@ namespace Web_API.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetBoardGames")]
-        public IEnumerable<BoardGame> Get()
+        [HttpGet(Name = "GetBoardGames")] //This is a special atribute that 
+        public IEnumerable<BoardGame> GetAll()
         {
             return new[]
             {
@@ -37,6 +37,27 @@ namespace Web_API.Controllers
                     Name = "Terraforming Mars",
                     Year = 2016
                 }
+            };
+
+        }
+
+        [HttpGet("favorite")]
+        public IEnumerable<BoardGame> GetFavs()
+        {
+            return new[]
+            {
+                new BoardGame
+                {
+                    Id = 1,
+                    Name = "Axis & Allies",
+                    Year = 1981
+                },
+                new BoardGame
+                {
+                    Id = 2,
+                    Name = "Citadels",
+                    Year = 2000
+                },
             };
         }
     }

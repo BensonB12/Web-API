@@ -23,7 +23,8 @@ if (app.Configuration.GetValue<bool>("UseDeveloperExceptionPage"))
 else
     app.UseExceptionHandler("/error");
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); //Middle ware
+//Get http://__/weatherforecast then this middleware 'UseHttpsRedirection'  will response / return with "Nope, I need HTTPS, not HTTP
 
 app.UseAuthorization();
 
