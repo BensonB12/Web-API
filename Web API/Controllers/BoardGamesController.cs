@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
+using System;
+using Web_API.DTO;
 
 namespace Web_API.Controllers
 {
@@ -15,30 +18,38 @@ namespace Web_API.Controllers
         }
 
         [HttpGet(Name = "GetBoardGames")] //This is a special atribute that 
-        public IEnumerable<BoardGame> GetAll()
+        [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
+        public RestDTO<BoardGame[]> Get()           
         {
-            return new[]
+            return new RestDTO<BoardGame[]>()       
             {
-                new BoardGame
+                Data = new BoardGame[] {
+                    new BoardGame()
                 {
                     Id = 1,
-                    Name = "Axis & Allies",
-                    Year = 1981
-                },
-                new BoardGame
+                        Name = "Axis & Allies",
+                        Year = 1981
+                    },
+                    new BoardGame()
                 {
                     Id = 2,
-                    Name = "Citadels",
-                    Year = 2000
-                },
-                new BoardGame
+                        Name = "Citadels",
+                        Year = 2000
+                    },
+                    new BoardGame()
                 {
                     Id = 3,
-                    Name = "Terraforming Mars",
-                    Year = 2016
+                        Name = "Terraforming Mars",
+                        Year = 2016
+                    }
+            },
+                Links = new List<LinkDTO> {      
+                    new LinkDTO(
+                        Url.Action(null, "BoardGames", null, Request.Scheme)!,
+                        "self",
+                        "GET"),
                 }
             };
-
         }
 
         [HttpGet("favorite")]

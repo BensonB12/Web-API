@@ -1,4 +1,6 @@
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,8 +48,23 @@ app.UseAuthorization();
 
 app.MapGet("/add", (int num1, int num2) => num1 + num2);
 app.MapGet("/greet", (string name) => $"Greetings {name}! Have you heard of the hapalopilus-nidulans partier? He was a fun guy.");
-app.MapGet("/error", () => Results.Problem()).RequireCors("AnyOrigin");
-app.MapGet("/error/test", () => { throw new Exception("test");  }).RequireCors("AnyOrigin");
+app.MapGet("/error", [EnableCors("AnyOrigin")] [ResponseCache(NoStore = true)] () => Results.Problem());
+//app.MapGet("/error", () => Results.Problem()).RequireCors("AnyOrigin");
+//app.MapGet("/error/test", () => { throw new Exception("test");  }).RequireCors("AnyOrigin");
+app.MapGet("/error/test", [EnableCors("AnyOrigin")] [ResponseCache(NoStore = true)] () => { throw new Exception("test"); });
+
+app.MapGet("/cod/test",
+    [EnableCors("AnyOrigin")]
+[ResponseCache(NoStore = true)] () =>
+    Results.Text("<script>" +
+    "window.alert('Your client supports JavaScript!" +
+    $"Server time (UTC): {DateTime.UtcNow.ToString("o")}" +
+    "\\r\\n" +
+    "Client time (UTC): ' + new Date().toISOString());" + 
+    "</script>" + 
+    "<boscript>Your cllient does not support JavaScript</noscript>", 
+    "text/html"));
+
 app.MapControllers().RequireCors("AnyOrigin");
 
 app.Run();
