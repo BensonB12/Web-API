@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using System;
-using Web_API.DTO;
+using Web_API;
+using MyBGList_ApiVersion.DTO.v1;
 
-namespace Web_API.Controllers
+namespace MyBGList_ApiVersion.Controllers.v1
 {
     [Route("[controller]")] //This is saying, hey, the url is meant to do the controller name: BoardGamesController but without 'controller'. So BoardGames
     [ApiController]
@@ -19,9 +20,9 @@ namespace Web_API.Controllers
 
         [HttpGet(Name = "GetBoardGames")] //This is a special atribute that 
         [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 60)]
-        public RestDTO<BoardGame[]> Get()           
+        public RestDTO<BoardGame[]> Get()
         {
-            return new RestDTO<BoardGame[]>()       
+            return new RestDTO<BoardGame[]>()
             {
                 Data = new BoardGame[] {
                     new BoardGame()
@@ -43,7 +44,7 @@ namespace Web_API.Controllers
                         Year = 2016
                     }
             },
-                Links = new List<LinkDTO> {      
+                Links = new List<LinkDTO> {
                     new LinkDTO(
                         Url.Action(null, "BoardGames", null, Request.Scheme)!,
                         "self",

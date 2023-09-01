@@ -1,4 +1,6 @@
-﻿namespace Web_API.DTO
+﻿using MyBGList_ApiVersion.DTO.v1;
+
+namespace MyBGList_ApiVersion.DTO.v2
 {
     public class RestDTO<T>
     {

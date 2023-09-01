@@ -1,4 +1,4 @@
-﻿namespace Web_API.DTO
+﻿namespace MyBGList_ApiVersion.DTO.v1
 {
     public class LinkDTO
     {
