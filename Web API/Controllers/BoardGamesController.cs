@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using System;
 using Web_API.DTO;
+using Web_API.Models;
 
 namespace Web_API.Controllers
 {

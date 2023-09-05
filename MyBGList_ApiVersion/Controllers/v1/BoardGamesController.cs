@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using System;
 using Web_API;
 using MyBGList_ApiVersion.DTO.v1;
+using Web_API.Models;
 
 namespace MyBGList_ApiVersion.Controllers.v1
 {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using System;
 using Web_API;
+using Web_API.Models;
 using MyBGList_ApiVersion.DTO.v2;
 
 namespace MyBGList_ApiVersion.Controllers.v2
