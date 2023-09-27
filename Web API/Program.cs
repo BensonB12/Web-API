@@ -59,6 +59,8 @@ app.MapGet("/error", [EnableCors("AnyOrigin")] [ResponseCache(NoStore = true)] (
 //app.MapGet("/error/test", () => { throw new Exception("test");  }).RequireCors("AnyOrigin");
 app.MapGet("/error/test", [EnableCors("AnyOrigin")] [ResponseCache(NoStore = true)] () => { throw new Exception("test"); });
 
+
+
 app.MapGet("/cod/test",
     [EnableCors("AnyOrigin")]
 [ResponseCache(NoStore = true)] () =>
